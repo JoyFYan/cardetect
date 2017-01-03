@@ -10,9 +10,9 @@
 clc;
 clear;
 
-maindir='D:\mydatabase\lb005-4w_out\';
+maindir='H:\mirror(1-2000)\';
 name_long=6; %图片名字的长度，如000123.jpg为6,最多9位,可修改
-num_begin=1; %图像命名开始的数字如000123.jpg开始的话就是123
+num_begin=6001; %图像命名开始的数字如000123.jpg开始的话就是123
 
 subdir = dir(maindir);
 n=1;
