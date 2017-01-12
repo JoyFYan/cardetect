@@ -93,21 +93,26 @@ def read(filename):
 	allnum=len(lines);
 	print allnum;
 	datas = np.zeros((allnum, 3, 100, 100));#图片大小
-	labels = np.zeros((allnum, 2));
+	#labels = np.zeros((allnum, 2));
+	labels0 = np.zeros((allnum, 1));
+	labels1 = np.zeros((allnum, 1));
 	h5name=filename.split('_')[0]+'.h5';
 	for count,line in enumerate(lines):
 		print "processing:"+str(count+1)+"/"+str(allnum);
 		info=line.split(" ",1);#分割一次
 		info[1]=info[1].replace('\n','');#删除换行符
 		classname=info[1].split(' ');#类名分割
-		label=tuple([int(i) for i in classname]);#改为tuple
+		#label=tuple([int(i) for i in classname]);#改为tuple
 		img=Image.open(path+info[0]);#打开图片
 		img=img.resize((100,100),Image.ANTIALIAS);#修改大小
 		datas[count, :, :, :] =  np.array(img).astype(np.float32).transpose(2,0,1) / 255;
-		labels[count, :] = np.array(label).astype(np.int);
+		#labels[count, :] = np.array(label).astype(np.int);
+		labels0[count, :] = np.array(classname[0]).astype(np.int);
+		labels1[count, :] = np.array(classname[1]).astype(np.int);
 	with h5py.File(h5name, 'w') as f:
         	f['data'] = datas
-        	f['labels'] = labels
+        	f['labels0'] = labels0
+			f['labels1'] = labels1
         	f.close()
 		
 	with open(filename.split('_')[0]+"_h5list.txt", 'w') as f:
@@ -117,7 +122,7 @@ def read(filename):
 	print str(allnum)+" files complete"
 	
 	
-pathset('C:/Users/admin/Documents/yzy/1_hdf5'); 
+pathset('/home/yzy/caffe/data/cardata/1_3hdf5'); 
 #F:\GITClone\cardetect\script D:\mydatabase\lb005-4w_out\cardata
 search();
 #read("test_12_28_15_11.txt")

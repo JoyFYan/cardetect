@@ -15,7 +15,14 @@ def pathset(path):
 		os.mkdir("full");#新建full目录
 	if not os.path.isdir("part"):#是否存在part目录
 		os.mkdir("part");#新建part目录
-		
+	if not os.path.isdir("part0"):#是否存在part目录
+		os.mkdir("part");#新建part目录
+	if not os.path.isdir("part1"):#是否存在part目录
+		os.mkdir("part");#新建part目录
+	if not os.path.isdir("part2"):#是否存在part目录
+		os.mkdir("part");#新建part目录	
+	if not os.path.isdir("part3"):#是否存在part目录
+		os.mkdir("part");#新建part目录
 		
 def rename(begin,weishu):#批量重命名，begin：起始数。weishu：数字位数
 	count=begin;
@@ -89,7 +96,7 @@ def imcut(filename):
 			region = (0,0,imsize[0]/2,imsize[1]);#左半侧裁剪
 			croped=im.crop(region);
 			name=info[0].split(".");
-			Newdir0=os.path.join(path+"\\part",name[0]+"_cl"+".jpg");
+			Newdir0=os.path.join(path+"\\part0",name[0]+"_cl"+".jpg");
 			if not os.path.exists(Newdir0):
 				croped.save(Newdir0);
 				f.write("part\\"+name[0]+"_cl"+".jpg"+" 0\n");
@@ -98,21 +105,21 @@ def imcut(filename):
 			#print(region);
 			croped=im.crop(region);
 			#name=info[0].split(".");
-			Newdir0=os.path.join(path+"\\part",name[0]+"_cr"+".jpg");
+			Newdir0=os.path.join(path+"\\part1",name[0]+"_cr"+".jpg");
 			if not os.path.exists(Newdir0):
 				croped.save(Newdir0);
 				f.write("part\\"+name[0]+"_cr"+".jpg"+" 0\n");
 			
 			region = (0,0,imsize[0],imsize[1]/2);#上半侧裁剪
 			croped=im.crop(region);
-			Newdir0=os.path.join(path+"\\part",name[0]+"_cu"+".jpg");
+			Newdir0=os.path.join(path+"\\part2",name[0]+"_cu"+".jpg");
 			if not os.path.exists(Newdir0):
 				croped.save(Newdir0);
 				f.write("part\\"+name[0]+"_cu"+".jpg"+" 0\n");
 			
 			region = (0,imsize[1]/2,imsize[0],imsize[1]);#下半侧裁剪
 			croped=im.crop(region);
-			Newdir0=os.path.join(path+"\\part",name[0]+"_cd"+".jpg");
+			Newdir0=os.path.join(path+"\\part3",name[0]+"_cd"+".jpg");
 			if not os.path.exists(Newdir0):
 				croped.save(Newdir0);
 				f.write("part\\"+name[0]+"_cd"+".jpg"+" 0\n");
